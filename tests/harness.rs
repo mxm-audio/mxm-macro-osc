@@ -21,7 +21,7 @@ use sha2::{Digest, Sha256};
 
 /// The engines ported so far: a case `eNN-*` runs when `NN` is here, and a shared case when
 /// every engine it uses is.
-const PORTED: &[usize] = &[8, 9, 10, 11, 12, 13, 14, 15];
+const PORTED: &[usize] = &[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
 /// The engines each shared case uses (the rest are named `eNN-*`).
 fn engines_of(case: &str) -> Vec<usize> {

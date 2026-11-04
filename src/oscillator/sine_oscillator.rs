@@ -13,6 +13,8 @@
 
 use std::f64::consts::PI as M_PI;
 
+use bytemuck::{Pod, Zeroable};
+
 use crate::resources::LUT_SINE;
 use crate::stmlib::dsp::dsp::{cast_u32, interpolate, interpolate_wrap};
 use crate::stmlib::dsp::parameter_interpolator::ParameterInterpolator;
@@ -161,7 +163,9 @@ pub const NORMAL: FastSineOscillatorMode = 0;
 pub const ADDITIVE: FastSineOscillatorMode = 1;
 pub const QUADRATURE: FastSineOscillatorMode = 2;
 
-#[derive(Default)]
+/// `#[repr(C)]` and `Pod`: the swarm engine keeps it in the arena (the crate's `AGENTS.md`).
+#[repr(C)]
+#[derive(Clone, Copy, Default, Pod, Zeroable)]
 pub struct FastSineOscillator {
     // Oscillator state.
     x_: f32,

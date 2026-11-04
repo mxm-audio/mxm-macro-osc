@@ -32,6 +32,7 @@ pub mod dsp;
 pub mod engine;
 pub mod envelope;
 pub mod fx;
+pub mod noise;
 pub mod oscillator;
 pub mod physical_modelling;
 pub mod resources;
