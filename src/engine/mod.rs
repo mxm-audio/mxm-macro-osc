@@ -10,7 +10,6 @@ pub mod hi_hat_engine;
 pub mod modal_engine;
 pub mod noise_engine;
 pub mod particle_engine;
-pub mod placeholder;
 pub mod snare_drum_engine;
 pub mod speech_engine;
 pub mod string_engine;
