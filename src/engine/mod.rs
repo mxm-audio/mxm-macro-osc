@@ -6,6 +6,7 @@ pub mod engine;
 pub mod fm_engine;
 pub mod grain_engine;
 pub mod placeholder;
+pub mod speech_engine;
 pub mod virtual_analog_engine;
 pub mod waveshaping_engine;
 pub mod wavetable_engine;

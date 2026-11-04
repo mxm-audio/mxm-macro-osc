@@ -46,7 +46,8 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
   (measured with a probe built as the reference was, 2026-11-04): to `int32_t`, truncation toward
   zero, a NaN or out-of-range value giving `i32::MIN` (`cvttss2si`), where Rust's `as` saturates;
   to `uint32_t`, the low 32 bits of a 64-bit conversion (−1.5 gives 4 294 967 295, 5e9 gives
-  705 032 704, a NaN 0); to a 16- or 8-bit type, the 32-bit conversion, truncated.
+  705 032 704, a NaN 0); to a 16- or 8-bit type, the 32-bit conversion, truncated; to `size_t`
+  (Plaits stores only sample counts in one), `cast_usize`, truncation, beyond 2⁶³ not measured.
 - **`std::max`, `std::min` and `CONSTRAIN` as C++ evaluates them** (`cpp.rs`), never `f32::max`,
   `min` or `clamp`, which treat a NaN differently; a table indexed by an integer from a float reads
   through `cpp::at`, which never panics.

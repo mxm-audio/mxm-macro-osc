@@ -20,6 +20,7 @@ use crate::engine::engine::{
     TRIGGER_UNPATCHED, note_to_frequency,
 };
 use crate::engine::placeholder::PlaceholderEngine;
+use crate::engine::speech_engine::SpeechEngine;
 use crate::engine::virtual_analog_engine::VirtualAnalogEngine;
 use crate::engine::wavetable_engine::WavetableEngine;
 use crate::engine::{
@@ -45,7 +46,6 @@ type SixOpEngine = PlaceholderEngine;
 type WaveTerrainEngine = PlaceholderEngine;
 type StringMachineEngine = PlaceholderEngine;
 type ChiptuneEngine = PlaceholderEngine;
-type SpeechEngine = PlaceholderEngine;
 type SwarmEngine = PlaceholderEngine;
 type NoiseEngine = PlaceholderEngine;
 type ParticleEngine = PlaceholderEngine;
