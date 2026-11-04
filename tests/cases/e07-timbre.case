@@ -1,0 +1,30 @@
+# engine 7: Timbre 0 to 1, pinged
+blocks 4000
+set patch.note 48.0
+set patch.harmonics 0.5
+set patch.timbre 0.5
+set patch.morph 0.5
+set patch.frequency_modulation_amount 0.0
+set patch.timbre_modulation_amount 0.0
+set patch.morph_modulation_amount 0.0
+set patch.decay 0.5
+set patch.lpg_colour 0.5
+set mod.trigger_patched 1
+set patch.engine 7
+ramp 0 3999 patch.timbre 0 1
+at 0 mod.trigger 1
+at 8 mod.trigger 0
+at 500 mod.trigger 1
+at 508 mod.trigger 0
+at 1000 mod.trigger 1
+at 1008 mod.trigger 0
+at 1500 mod.trigger 1
+at 1508 mod.trigger 0
+at 2000 mod.trigger 1
+at 2008 mod.trigger 0
+at 2500 mod.trigger 1
+at 2508 mod.trigger 0
+at 3000 mod.trigger 1
+at 3008 mod.trigger 0
+at 3500 mod.trigger 1
+at 3508 mod.trigger 0

@@ -1,0 +1,37 @@
+# engine 8: a drone whose engine steps through all 24, a note held
+blocks 4000
+set patch.note 48.0
+set patch.harmonics 0.5
+set patch.timbre 0.5
+set patch.morph 0.5
+set patch.frequency_modulation_amount 0.0
+set patch.timbre_modulation_amount 0.0
+set patch.morph_modulation_amount 0.0
+set patch.decay 0.5
+set patch.lpg_colour 0.5
+set mod.trigger_patched 0
+set patch.engine 8
+at 0 patch.engine 0
+at 166 patch.engine 1
+at 332 patch.engine 2
+at 498 patch.engine 3
+at 664 patch.engine 4
+at 830 patch.engine 5
+at 996 patch.engine 6
+at 1162 patch.engine 7
+at 1328 patch.engine 8
+at 1494 patch.engine 9
+at 1660 patch.engine 10
+at 1826 patch.engine 11
+at 1992 patch.engine 12
+at 2158 patch.engine 13
+at 2324 patch.engine 14
+at 2490 patch.engine 15
+at 2656 patch.engine 16
+at 2822 patch.engine 17
+at 2988 patch.engine 18
+at 3154 patch.engine 19
+at 3320 patch.engine 20
+at 3486 patch.engine 21
+at 3652 patch.engine 22
+at 3818 patch.engine 23

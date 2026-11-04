@@ -1,0 +1,17 @@
+[package]
+name = "mxm-thanks-eg-engines"
+description = "Plaits' voice and its twenty-four engines, ported to Rust from Emilie Gillet's MIT code"
+version.workspace = true
+edition.workspace = true
+# One runtime dependency, bytemuck, for the arena's typed views; no GUI, so below the GUI floor.
+rust-version = "1.87"
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+bytemuck = { workspace = true, features = ["derive"] }
+
+[dev-dependencies]
+# The reference cases' digests are SHA-256 of the rendered frames.
+sha2.workspace = true

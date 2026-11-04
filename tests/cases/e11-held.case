@@ -1,0 +1,19 @@
+# engine 11: two notes held 0.4 s each
+blocks 4000
+set patch.note 48.0
+set patch.harmonics 0.5
+set patch.timbre 0.5
+set patch.morph 0.5
+set patch.frequency_modulation_amount 0.0
+set patch.timbre_modulation_amount 0.0
+set patch.morph_modulation_amount 0.0
+set patch.decay 0.5
+set patch.lpg_colour 0.5
+set mod.trigger_patched 1
+set patch.engine 11
+at 0 patch.note 43
+at 0 mod.trigger 1
+at 1500 mod.trigger 0
+at 2000 patch.note 55
+at 2000 mod.trigger 1
+at 3500 mod.trigger 0

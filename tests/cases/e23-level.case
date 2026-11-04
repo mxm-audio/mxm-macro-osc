@@ -1,0 +1,24 @@
+# engine 23: Level patched: the gate follows it up and down, colour 0.8
+blocks 4000
+set patch.note 48.0
+set patch.harmonics 0.5
+set patch.timbre 0.5
+set patch.morph 0.5
+set patch.frequency_modulation_amount 0.0
+set patch.timbre_modulation_amount 0.0
+set patch.morph_modulation_amount 0.0
+set patch.decay 0.5
+set patch.lpg_colour 0.8
+set mod.trigger_patched 1
+set patch.engine 23
+set mod.level_patched 1
+ramp 0 2000 mod.level 0 1
+ramp 2000 3999 mod.level 1 0
+at 0 mod.trigger 1
+at 8 mod.trigger 0
+at 1000 mod.trigger 1
+at 1008 mod.trigger 0
+at 2000 mod.trigger 1
+at 2008 mod.trigger 0
+at 3000 mod.trigger 1
+at 3008 mod.trigger 0

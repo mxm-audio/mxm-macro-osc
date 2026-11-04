@@ -1,0 +1,42 @@
+# engine 14: the controls at 0 then 1, decay and colour at their ends
+blocks 4000
+set patch.note 48.0
+set patch.harmonics 0.0
+set patch.timbre 0.0
+set patch.morph 0.0
+set patch.frequency_modulation_amount 0.0
+set patch.timbre_modulation_amount 0.0
+set patch.morph_modulation_amount 0.0
+set patch.decay 0.0
+set patch.lpg_colour 0.0
+set mod.trigger_patched 1
+set patch.engine 14
+at 2000 patch.harmonics 1
+at 2000 patch.timbre 1
+at 2000 patch.morph 1
+at 2000 patch.decay 1
+at 2000 patch.lpg_colour 1
+at 0 patch.note 30
+at 0 mod.trigger 1
+at 8 mod.trigger 0
+at 500 patch.note 84
+at 500 mod.trigger 1
+at 508 mod.trigger 0
+at 1000 patch.note 30
+at 1000 mod.trigger 1
+at 1008 mod.trigger 0
+at 1500 patch.note 84
+at 1500 mod.trigger 1
+at 1508 mod.trigger 0
+at 2000 patch.note 30
+at 2000 mod.trigger 1
+at 2008 mod.trigger 0
+at 2500 patch.note 84
+at 2500 mod.trigger 1
+at 2508 mod.trigger 0
+at 3000 patch.note 30
+at 3000 mod.trigger 1
+at 3008 mod.trigger 0
+at 3500 patch.note 84
+at 3500 mod.trigger 1
+at 3508 mod.trigger 0

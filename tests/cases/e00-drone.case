@@ -1,0 +1,14 @@
+# engine 0: no trigger, no level (the gate bypassed); the note from 24 to 96
+blocks 4000
+set patch.note 48.0
+set patch.harmonics 0.3
+set patch.timbre 0.6
+set patch.morph 0.4
+set patch.frequency_modulation_amount 0.0
+set patch.timbre_modulation_amount 0.0
+set patch.morph_modulation_amount 0.0
+set patch.decay 0.5
+set patch.lpg_colour 0.5
+set mod.trigger_patched 0
+set patch.engine 0
+ramp 0 3999 patch.note 24 96
