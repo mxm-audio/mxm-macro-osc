@@ -35,6 +35,8 @@ use crate::engine::{
     additive_engine::AdditiveEngine, fm_engine::FMEngine, grain_engine::GrainEngine,
     waveshaping_engine::WaveshapingEngine,
 };
+use crate::engine2::six_op_engine::SixOpEngine;
+use crate::engine2::string_machine_engine::StringMachineEngine;
 use crate::envelope::{DecayEnvelope, LPGEnvelope};
 use crate::fx::low_pass_gate::LowPassGate;
 use crate::physical_modelling::delay_line::DelayLine;
@@ -50,9 +52,7 @@ use crate::stmlib::utils::random::Random;
 // The engines not yet ported: each a placeholder until it is (the crate's AGENTS.md).
 type VirtualAnalogVCFEngine = PlaceholderEngine;
 type PhaseDistortionEngine = PlaceholderEngine;
-type SixOpEngine = PlaceholderEngine;
 type WaveTerrainEngine = PlaceholderEngine;
-type StringMachineEngine = PlaceholderEngine;
 type ChiptuneEngine = PlaceholderEngine;
 
 pub const K_MAX_ENGINES: usize = 24;
