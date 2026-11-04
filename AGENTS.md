@@ -114,6 +114,10 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
   swap is not a rotate). Crate-wide allows are for lints the whole port trips, each with its reason.
 - **What a C++ template calls on its type parameter** becomes a trait in the template's module
   (`FractalSource`, `MetallicNoiseSource`); a functor's `operator()` becomes `call`.
+- **A C++ pointer that may alias another buffer** (an FM operator reading and writing the same
+  one) becomes an offset into one shared slice, read before written at each sample, as the C++.
+- **A C++ subclass that only adds a setter** becomes an `impl` on that one instance of the
+  generic type.
 - **A C++ pointer from one object to another the engine owns** (the LPC controller's to its word
   bank) becomes a parameter of the call that uses it, so no struct borrows another.
 
@@ -135,7 +139,8 @@ handles it, never by a debug panic. `#![forbid(unsafe_code)]`.
 - The C++ is `pichenettes/eurorack` at the commit above; a local copy of it, with its checksums,
   is anywhere you fetch it to. Port from it, not from memory, and not from another port.
 - Editing a file from Python: open it with `newline=''`; `pathlib.write_text` writes CRLF on
-  Windows.
+  Windows. From PowerShell, `Set-Content -Encoding utf8` writes a BOM. A commit message goes
+  through `git commit -F <file>`, not a here-string on stdin.
 - An engine not yet ported is a placeholder in the voice's registry: it allocates nothing and
   renders silence, so the ported engines' arena offsets are already their own.
 
