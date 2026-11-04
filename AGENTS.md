@@ -77,7 +77,11 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
   regions through bytemuck views of the arena passed to it. What one engine leaves, the next may
   read, as in the C++ (a six-op engine's first block after a model change does).
 - A type kept in the arena is `#[repr(C)]` and `Pod`, with the C++ type's layout on x64; a C++
-  pointer kept there becomes an index of the same size.
+  pointer kept there becomes an index of the same size (8 bytes): the element offset into the table
+  it points at, which is what another engine reads if it reads those bytes.
+- **An overrun the C++ makes is ported as written**: the wavetable engine allocates 64 map entries
+  and `LoadUserData` writes 256, into the arena beyond them. The port writes and reads the same
+  bytes, bounds-checked so it never panics.
 
 ## Randomness
 
