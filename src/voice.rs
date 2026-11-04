@@ -20,6 +20,10 @@ use crate::engine::engine::{
 };
 use crate::engine::placeholder::PlaceholderEngine;
 use crate::engine::virtual_analog_engine::VirtualAnalogEngine;
+use crate::engine::{
+    additive_engine::AdditiveEngine, fm_engine::FMEngine, grain_engine::GrainEngine,
+    waveshaping_engine::WaveshapingEngine,
+};
 use crate::envelope::{DecayEnvelope, LPGEnvelope};
 use crate::fx::low_pass_gate::LowPassGate;
 use crate::physical_modelling::delay_line::DelayLine;
@@ -39,10 +43,6 @@ type SixOpEngine = PlaceholderEngine;
 type WaveTerrainEngine = PlaceholderEngine;
 type StringMachineEngine = PlaceholderEngine;
 type ChiptuneEngine = PlaceholderEngine;
-type WaveshapingEngine = PlaceholderEngine;
-type FMEngine = PlaceholderEngine;
-type GrainEngine = PlaceholderEngine;
-type AdditiveEngine = PlaceholderEngine;
 type WavetableEngine = PlaceholderEngine;
 type ChordEngine = PlaceholderEngine;
 type SpeechEngine = PlaceholderEngine;

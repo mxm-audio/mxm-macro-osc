@@ -1,5 +1,9 @@
 //! plaits/dsp/engine/: the engine interface and the engines of banks 2 and 3.
 
+pub mod additive_engine;
 pub mod engine;
+pub mod fm_engine;
+pub mod grain_engine;
 pub mod placeholder;
 pub mod virtual_analog_engine;
+pub mod waveshaping_engine;
