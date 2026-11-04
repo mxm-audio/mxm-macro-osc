@@ -21,11 +21,13 @@ use crate::engine::engine::{
     TRIGGER_UNPATCHED, note_to_frequency,
 };
 use crate::engine::hi_hat_engine::HiHatEngine;
+use crate::engine::modal_engine::ModalEngine;
 use crate::engine::noise_engine::NoiseEngine;
 use crate::engine::particle_engine::ParticleEngine;
 use crate::engine::placeholder::PlaceholderEngine;
 use crate::engine::snare_drum_engine::SnareDrumEngine;
 use crate::engine::speech_engine::SpeechEngine;
+use crate::engine::string_engine::StringEngine;
 use crate::engine::swarm_engine::SwarmEngine;
 use crate::engine::virtual_analog_engine::VirtualAnalogEngine;
 use crate::engine::wavetable_engine::WavetableEngine;
@@ -52,8 +54,6 @@ type SixOpEngine = PlaceholderEngine;
 type WaveTerrainEngine = PlaceholderEngine;
 type StringMachineEngine = PlaceholderEngine;
 type ChiptuneEngine = PlaceholderEngine;
-type StringEngine = PlaceholderEngine;
-type ModalEngine = PlaceholderEngine;
 
 pub const K_MAX_ENGINES: usize = 24;
 pub const K_MAX_TRIGGER_DELAY: usize = 8;
