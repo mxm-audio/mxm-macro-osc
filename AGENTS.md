@@ -99,6 +99,14 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
   with the rest. Turning them into the plugin's floats is the plugin's.
 - Not ported: user data, and everything of the hardware's (UI, settings, calibration, drivers).
 
+## Clippy, and C++ pointers between objects
+
+- **A clippy rewrite that would change the rounding or the C++'s form is declined locally**, with
+  `#[allow]` and a comment saying why (`blend *= blend * (…)` rounds differently rewritten; a nibble
+  swap is not a rotate). Crate-wide allows are for lints the whole port trips, each with its reason.
+- **A C++ pointer from one object to another the engine owns** (the LPC controller's to its word
+  bank) becomes a parameter of the call that uses it, so no struct borrows another.
+
 ## Realtime
 
 No allocation, no locks and no panic on any input in `render`; overflow is handled as the C++
