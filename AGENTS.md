@@ -85,6 +85,9 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
   it points at, which is what another engine reads if it reads those bytes.
 - **A type inside a type kept in the arena** (a swarm voice's oscillator) is `#[repr(C)]` and `Pod`
   in its own module, and the arena type carries a compile-time assert of its C++ size.
+- **A region shared by parts that also use their own regions** (the string engine's temp buffer,
+  used by each of its strings beside their delay lines) is worked on as a copy and written back,
+  so the arena ends each block with the C++'s bytes.
 - **An overrun the C++ makes is ported as written**: the wavetable engine allocates 64 map entries
   and `LoadUserData` writes 256, into the arena beyond them. The port writes and reads the same
   bytes, bounds-checked so it never panics.
