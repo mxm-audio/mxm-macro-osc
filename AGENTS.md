@@ -109,7 +109,11 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
 
 - `Patch`, `Modulations` and `Frame { out: i16, aux: i16 }` as `dsp/voice.h` has them;
   `Voice::new() -> Box<Voice>`; `Voice::render(&mut self, &Patch, &Modulations, &mut [Frame])`
-  with `K_BLOCK_SIZE` (12) frames, once per block, as plaits.cc calls it.
+  with `K_BLOCK_SIZE` (12) frames, once per block, as plaits.cc calls it. For the instrument, and
+  not in the C++: `init` is public (an idle voice's next note), `clear` returns a voice to what
+  `new` made without allocating (its `reset`), `decay_envelope` reads the internal envelope (its
+  *Decay* source) and `low_pass_gate_gain` the gate's (when a voice may go idle). None of them
+  changes a bit of `render`.
 - The frames are the module's: Plaits' output stage (×−32767, +1, clipped to 16 bits) is ported
   with the rest. Turning them into the plugin's floats is the plugin's.
 - Not ported: user data, and everything of the hardware's (UI, settings, calibration, drivers).

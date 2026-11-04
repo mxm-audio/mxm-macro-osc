@@ -278,8 +278,33 @@ impl Voice {
         voice
     }
 
-    /// `Init(BufferAllocator* allocator)`, the allocator over the voice's own arena.
-    fn init(&mut self) {
+    /// Not in the C++, for the instrument (`mxm-thanks-eg-dsp`): every state as [`Voice::new`]
+    /// leaves it, allocating nothing: the arena zeroed, the random stream back at `0x21`, then
+    /// `Init`.
+    pub fn clear(&mut self) {
+        self.shared_buffer_.bytes.fill(0);
+        self.random_ = Random::default();
+        self.init();
+    }
+
+    /// Not in the C++, for the instrument: the internal decay envelope's value, 0 to 1, which it
+    /// offers as a modulation source.
+    #[inline]
+    pub fn decay_envelope(&self) -> f32 {
+        self.decay_envelope_.value()
+    }
+
+    /// Not in the C++, for the instrument: the low-pass gate's gain after the last block, 0 to 1;
+    /// 1 when the engine envelopes itself and the gate is bypassed (`LPGEnvelope::Init`'s value).
+    #[inline]
+    pub fn low_pass_gate_gain(&self) -> f32 {
+        self.lpg_envelope_.gain()
+    }
+
+    /// `Init(BufferAllocator* allocator)`, the allocator over the voice's own arena. Public for the
+    /// instrument, which starts an idle voice's next note with it; the arena's bytes and the random
+    /// stream carry on, as on the module.
+    pub fn init(&mut self) {
         self.engines_.init();
 
         let e = &mut self.engines_;
