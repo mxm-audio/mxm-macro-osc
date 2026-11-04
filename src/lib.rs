@@ -26,6 +26,7 @@
 pub mod cpp;
 pub mod stmlib;
 
+pub mod chords;
 pub mod downsampler;
 pub mod dsp;
 pub mod engine;
