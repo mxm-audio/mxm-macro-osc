@@ -58,7 +58,10 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
 - **Pointer arithmetic into a table** (`lut_fold + 1`) becomes a slice from that element; a read
   before its start returns 0 where the C++ would read the element before, so say in a comment why
   the read position can't get there.
-- **The voice starts zeroed**, as the reference's `static` voice does, before `init`.
+- **The voice starts zeroed**, as the reference's `static` voice does, before `init`; a field the
+  C++'s `Init` never sets keeps that zero, left unset in the port with a comment saying so.
+- **A `while (size--)` loop whose body reads `size`** is a countdown in the port too, never
+  `for i in 0..size`.
 - **Integer arithmetic**: unsigned C++ arithmetic wraps, so use `wrapping_*`; shifts as the C++
   writes them.
 - **The maths library**: at run time Plaits calls only `fabsf` and `sqrtf`, both exact in Rust
@@ -107,7 +110,7 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
   `#[allow]` and a comment saying why (`blend *= blend * (…)` rounds differently rewritten; a nibble
   swap is not a rotate). Crate-wide allows are for lints the whole port trips, each with its reason.
 - **What a C++ template calls on its type parameter** becomes a trait in the template's module
-  (`FractalSource`).
+  (`FractalSource`, `MetallicNoiseSource`); a functor's `operator()` becomes `call`.
 - **A C++ pointer from one object to another the engine owns** (the LPC controller's to its word
   bank) becomes a parameter of the call that uses it, so no struct borrows another.
 
