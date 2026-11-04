@@ -19,7 +19,9 @@ use crate::engine::engine::{
     Engine, EngineParameters, EngineRegistry, TRIGGER_HIGH, TRIGGER_LOW, TRIGGER_RISING_EDGE,
     TRIGGER_UNPATCHED, note_to_frequency,
 };
+use crate::engine::modal_engine::ModalEngine;
 use crate::engine::placeholder::PlaceholderEngine;
+use crate::engine::string_engine::StringEngine;
 use crate::engine::virtual_analog_engine::VirtualAnalogEngine;
 use crate::engine::wavetable_engine::WavetableEngine;
 use crate::engine::{
@@ -49,8 +51,6 @@ type SpeechEngine = PlaceholderEngine;
 type SwarmEngine = PlaceholderEngine;
 type NoiseEngine = PlaceholderEngine;
 type ParticleEngine = PlaceholderEngine;
-type StringEngine = PlaceholderEngine;
-type ModalEngine = PlaceholderEngine;
 type BassDrumEngine = PlaceholderEngine;
 type SnareDrumEngine = PlaceholderEngine;
 type HiHatEngine = PlaceholderEngine;
