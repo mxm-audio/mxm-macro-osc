@@ -28,6 +28,7 @@ pub mod stmlib;
 
 pub mod chords;
 pub mod downsampler;
+pub mod drums;
 pub mod dsp;
 pub mod engine;
 pub mod envelope;

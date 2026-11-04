@@ -14,12 +14,15 @@ use bytemuck::{Pod, Zeroable};
 
 use crate::cpp::max;
 use crate::dsp::{K_BLOCK_SIZE, K_MAX_BLOCK_SIZE, K_SAMPLE_RATE};
+use crate::engine::bass_drum_engine::BassDrumEngine;
 use crate::engine::chord_engine::ChordEngine;
 use crate::engine::engine::{
     Engine, EngineParameters, EngineRegistry, TRIGGER_HIGH, TRIGGER_LOW, TRIGGER_RISING_EDGE,
     TRIGGER_UNPATCHED, note_to_frequency,
 };
+use crate::engine::hi_hat_engine::HiHatEngine;
 use crate::engine::placeholder::PlaceholderEngine;
+use crate::engine::snare_drum_engine::SnareDrumEngine;
 use crate::engine::virtual_analog_engine::VirtualAnalogEngine;
 use crate::engine::wavetable_engine::WavetableEngine;
 use crate::engine::{
@@ -51,9 +54,6 @@ type NoiseEngine = PlaceholderEngine;
 type ParticleEngine = PlaceholderEngine;
 type StringEngine = PlaceholderEngine;
 type ModalEngine = PlaceholderEngine;
-type BassDrumEngine = PlaceholderEngine;
-type SnareDrumEngine = PlaceholderEngine;
-type HiHatEngine = PlaceholderEngine;
 
 pub const K_MAX_ENGINES: usize = 24;
 pub const K_MAX_TRIGGER_DELAY: usize = 8;
