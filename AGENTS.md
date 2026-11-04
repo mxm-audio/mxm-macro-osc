@@ -52,7 +52,11 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
   through `cpp::at`, which never panics.
 - **A table keeps its declared size**: `lut_pitch_ratio_*` are declared with 257 elements and given
   256, so the last is zero, as in C++.
-- **An interpolator writes back at the end of its scope**, as the C++ destructor does (`Drop`).
+- **An interpolator writes back at the end of its scope**, as the C++ destructor does (`Drop`);
+  an array of them is built with `each_mut().map`, which gives the C++'s default-then-`Init` values.
+- **Pointer arithmetic into a table** (`lut_fold + 1`) becomes a slice from that element; a read
+  before its start returns 0 where the C++ would read the element before, so say in a comment why
+  the read position can't get there.
 - **The voice starts zeroed**, as the reference's `static` voice does, before `init`.
 - **Integer arithmetic**: unsigned C++ arithmetic wraps, so use `wrapping_*`; shifts as the C++
   writes them.
