@@ -80,6 +80,8 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
 - A type kept in the arena is `#[repr(C)]` and `Pod`, with the C++ type's layout on x64; a C++
   pointer kept there becomes an index of the same size (8 bytes): the element offset into the table
   it points at, which is what another engine reads if it reads those bytes.
+- **A type inside a type kept in the arena** (a swarm voice's oscillator) is `#[repr(C)]` and `Pod`
+  in its own module, and the arena type carries a compile-time assert of its C++ size.
 - **An overrun the C++ makes is ported as written**: the wavetable engine allocates 64 map entries
   and `LoadUserData` writes 256, into the arena beyond them. The port writes and reads the same
   bytes, bounds-checked so it never panics.
@@ -104,6 +106,8 @@ Framework-free, no file IO, nothing allocated after `Voice::new`, builds for
 - **A clippy rewrite that would change the rounding or the C++'s form is declined locally**, with
   `#[allow]` and a comment saying why (`blend *= blend * (…)` rounds differently rewritten; a nibble
   swap is not a rotate). Crate-wide allows are for lints the whole port trips, each with its reason.
+- **What a C++ template calls on its type parameter** becomes a trait in the template's module
+  (`FractalSource`).
 - **A C++ pointer from one object to another the engine owns** (the LPC controller's to its word
   bank) becomes a parameter of the call that uses it, so no struct borrows another.
 
@@ -124,6 +128,8 @@ handles it, never by a debug panic. `#![forbid(unsafe_code)]`.
   whose engines are all ported. A case that fails prints its first differing frame and block.
 - The C++ is `pichenettes/eurorack` at the commit above; a local copy of it, with its checksums,
   is anywhere you fetch it to. Port from it, not from memory, and not from another port.
+- Editing a file from Python: open it with `newline=''`; `pathlib.write_text` writes CRLF on
+  Windows.
 - An engine not yet ported is a placeholder in the voice's registry: it allocates nothing and
   renders silence, so the ported engines' arena offsets are already their own.
 
