@@ -30,6 +30,7 @@ pub mod chords;
 pub mod downsampler;
 pub mod dsp;
 pub mod engine;
+pub mod engine2;
 pub mod envelope;
 pub mod fx;
 pub mod noise;

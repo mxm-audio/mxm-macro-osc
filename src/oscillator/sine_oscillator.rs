@@ -15,8 +15,9 @@ use std::f64::consts::PI as M_PI;
 
 use bytemuck::{Pod, Zeroable};
 
+use crate::cpp::lut_sine_at;
 use crate::resources::LUT_SINE;
-use crate::stmlib::dsp::dsp::{cast_u32, interpolate, interpolate_wrap};
+use crate::stmlib::dsp::dsp::{cast_i32, cast_u32, interpolate, make_integral_fractional};
 use crate::stmlib::dsp::parameter_interpolator::ParameterInterpolator;
 use crate::stmlib::dsp::rsqrt::fast_rsqrt_carmack;
 
@@ -25,9 +26,17 @@ pub const K_SINE_LUT_QUADRATURE: usize = 128;
 pub const K_SINE_LUT_BITS: u32 = 9;
 
 /// Safe for phase >= 0.0f, will wrap.
+///
+/// `InterpolateWrap(lut_sine, phase, kSineLUTSize)`, its two reads through [`lut_sine_at`]: a
+/// negative phase reads before the table, as the wave terrain's AUX does.
 #[inline]
-pub fn sine(phase: f32) -> f32 {
-    interpolate_wrap(&LUT_SINE, phase, K_SINE_LUT_SIZE)
+pub fn sine(mut phase: f32) -> f32 {
+    phase -= cast_i32(phase) as f32;
+    phase *= K_SINE_LUT_SIZE;
+    let (index_integral, index_fractional) = make_integral_fractional(phase);
+    let a = lut_sine_at(index_integral);
+    let b = lut_sine_at(index_integral.wrapping_add(1));
+    a + (b - a) * index_fractional
 }
 
 /// Potentially unsafe, if phase >= 1.25.

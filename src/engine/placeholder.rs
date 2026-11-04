@@ -12,14 +12,6 @@ pub struct PlaceholderEngine {
     pub post_processing_settings: PostProcessingSettings,
 }
 
-impl PlaceholderEngine {
-    /// `ChiptuneEngine::NO_ENVELOPE`, which the voice passes the chiptune engine.
-    pub const NO_ENVELOPE: i32 = 2;
-
-    /// `ChiptuneEngine::set_envelope_shape`, which the voice calls: nothing to set yet.
-    pub fn set_envelope_shape(&mut self, _envelope_shape: f32) {}
-}
-
 impl Engine for PlaceholderEngine {
     fn init(&mut self, _allocator: &mut BufferAllocator<'_>) {}
 

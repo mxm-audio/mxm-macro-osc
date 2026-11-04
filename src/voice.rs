@@ -30,6 +30,10 @@ use crate::engine::{
     additive_engine::AdditiveEngine, fm_engine::FMEngine, grain_engine::GrainEngine,
     waveshaping_engine::WaveshapingEngine,
 };
+use crate::engine2::chiptune_engine::ChiptuneEngine;
+use crate::engine2::phase_distortion_engine::PhaseDistortionEngine;
+use crate::engine2::virtual_analog_vcf_engine::VirtualAnalogVCFEngine;
+use crate::engine2::wave_terrain_engine::WaveTerrainEngine;
 use crate::envelope::{DecayEnvelope, LPGEnvelope};
 use crate::fx::low_pass_gate::LowPassGate;
 use crate::physical_modelling::delay_line::DelayLine;
@@ -43,12 +47,8 @@ use crate::stmlib::utils::buffer_allocator::{Arena, BufferAllocator};
 use crate::stmlib::utils::random::Random;
 
 // The engines not yet ported: each a placeholder until it is (the crate's AGENTS.md).
-type VirtualAnalogVCFEngine = PlaceholderEngine;
-type PhaseDistortionEngine = PlaceholderEngine;
 type SixOpEngine = PlaceholderEngine;
-type WaveTerrainEngine = PlaceholderEngine;
 type StringMachineEngine = PlaceholderEngine;
-type ChiptuneEngine = PlaceholderEngine;
 type StringEngine = PlaceholderEngine;
 type ModalEngine = PlaceholderEngine;
 type BassDrumEngine = PlaceholderEngine;
