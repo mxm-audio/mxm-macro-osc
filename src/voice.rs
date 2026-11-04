@@ -19,6 +19,7 @@ use crate::engine::engine::{
     TRIGGER_UNPATCHED, note_to_frequency,
 };
 use crate::engine::placeholder::PlaceholderEngine;
+use crate::engine::speech_engine::SpeechEngine;
 use crate::engine::virtual_analog_engine::VirtualAnalogEngine;
 use crate::envelope::{DecayEnvelope, LPGEnvelope};
 use crate::fx::low_pass_gate::LowPassGate;
@@ -45,7 +46,6 @@ type GrainEngine = PlaceholderEngine;
 type AdditiveEngine = PlaceholderEngine;
 type WavetableEngine = PlaceholderEngine;
 type ChordEngine = PlaceholderEngine;
-type SpeechEngine = PlaceholderEngine;
 type SwarmEngine = PlaceholderEngine;
 type NoiseEngine = PlaceholderEngine;
 type ParticleEngine = PlaceholderEngine;

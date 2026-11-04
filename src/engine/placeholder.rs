@@ -18,12 +18,6 @@ impl PlaceholderEngine {
 
     /// `ChiptuneEngine::set_envelope_shape`, which the voice calls: nothing to set yet.
     pub fn set_envelope_shape(&mut self, _envelope_shape: f32) {}
-
-    /// `SpeechEngine::set_prosody_amount`, which the voice calls: nothing to set yet.
-    pub fn set_prosody_amount(&mut self, _prosody_amount: f32) {}
-
-    /// `SpeechEngine::set_speed`, which the voice calls: nothing to set yet.
-    pub fn set_speed(&mut self, _speed: f32) {}
 }
 
 impl Engine for PlaceholderEngine {

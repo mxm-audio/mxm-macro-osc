@@ -1,5 +1,8 @@
-//! plaits/dsp/speech/: the speech engine's synthesizers and data. So far its words, and the
-//! word bank's data type they are declared with.
+//! plaits/dsp/speech/: the speech engine's synthesizers and data.
 
+pub mod lpc_speech_synth;
 pub mod lpc_speech_synth_controller;
+pub mod lpc_speech_synth_phonemes;
 pub mod lpc_speech_synth_words;
+pub mod naive_speech_synth;
+pub mod sam_speech_synth;

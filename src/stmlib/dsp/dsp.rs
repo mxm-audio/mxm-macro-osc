@@ -70,6 +70,15 @@ pub fn cast_u32_f64(x: f64) -> u32 {
     cast_i64_f64(x) as u32
 }
 
+/// A `float` stored in a `size_t` (a sample count): on x64 the 64-bit unsigned conversion,
+/// which for a value in [0, 2⁶³) is the 64-bit `cvttss2si`, truncation toward zero. Plaits
+/// stores only such values; outside that range this keeps [`cast_i64`]'s 64 bits, which is not
+/// measured as MSVC's.
+#[inline]
+pub fn cast_usize(x: f32) -> usize {
+    cast_i64(x) as u64 as usize
+}
+
 /// `static_cast<int16_t>(float)`: through the 32-bit `cvttss2si`, keeping the low 16 bits
 /// (70 000.7 gives 4 464; out of the `int32_t` range, 0).
 #[inline]

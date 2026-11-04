@@ -2,4 +2,5 @@
 
 pub mod engine;
 pub mod placeholder;
+pub mod speech_engine;
 pub mod virtual_analog_engine;
