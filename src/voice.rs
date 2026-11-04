@@ -14,12 +14,14 @@ use bytemuck::{Pod, Zeroable};
 
 use crate::cpp::max;
 use crate::dsp::{K_BLOCK_SIZE, K_MAX_BLOCK_SIZE, K_SAMPLE_RATE};
+use crate::engine::chord_engine::ChordEngine;
 use crate::engine::engine::{
     Engine, EngineParameters, EngineRegistry, TRIGGER_HIGH, TRIGGER_LOW, TRIGGER_RISING_EDGE,
     TRIGGER_UNPATCHED, note_to_frequency,
 };
 use crate::engine::placeholder::PlaceholderEngine;
 use crate::engine::virtual_analog_engine::VirtualAnalogEngine;
+use crate::engine::wavetable_engine::WavetableEngine;
 use crate::envelope::{DecayEnvelope, LPGEnvelope};
 use crate::fx::low_pass_gate::LowPassGate;
 use crate::physical_modelling::delay_line::DelayLine;
@@ -43,8 +45,6 @@ type WaveshapingEngine = PlaceholderEngine;
 type FMEngine = PlaceholderEngine;
 type GrainEngine = PlaceholderEngine;
 type AdditiveEngine = PlaceholderEngine;
-type WavetableEngine = PlaceholderEngine;
-type ChordEngine = PlaceholderEngine;
 type SpeechEngine = PlaceholderEngine;
 type SwarmEngine = PlaceholderEngine;
 type NoiseEngine = PlaceholderEngine;
