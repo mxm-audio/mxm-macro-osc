@@ -1,11 +1,11 @@
 //! The generated tables against values read from the C++ sources by hand, and against what the
 //! sources say generated them (`gen/tables.py` makes the files; this checks it independently).
 
-use mxm_thanks_eg_engines::resources::*;
-use mxm_thanks_eg_engines::speech::lpc_speech_synth_words::{
+use mxm_macro_osc::resources::*;
+use mxm_macro_osc::speech::lpc_speech_synth_words::{
     BANK_0, BANK_4, LPC_SPEECH_SYNTH_NUM_WORD_BANKS, WORD_BANKS_,
 };
-use mxm_thanks_eg_engines::stmlib::dsp::units::{LUT_PITCH_RATIO_HIGH, LUT_PITCH_RATIO_LOW};
+use mxm_macro_osc::stmlib::dsp::units::{LUT_PITCH_RATIO_HIGH, LUT_PITCH_RATIO_LOW};
 
 /// What the C++ compiler makes of an unsuffixed literal in a `float` table: the decimal as a
 /// `double`, rounded to `float`.

@@ -1,17 +1,24 @@
 [package]
-name = "mxm-thanks-eg-engines"
-description = "Plaits' voice and its twenty-four engines, ported to Rust from Emilie Gillet's MIT code"
-version.workspace = true
-edition.workspace = true
-# One runtime dependency, bytemuck, for the arena's typed views; no GUI, so below the GUI floor.
+name = "mxm-macro-osc"
+description = "Plaits' voice and its twenty-four engines, ported to Rust from Emilie Gillet's MIT code, bit for bit"
+version = "0.1.0"
+edition = "2024"
+# One runtime dependency, bytemuck, for the arena's typed views.
 rust-version = "1.87"
-license.workspace = true
-authors.workspace = true
-repository.workspace = true
+license = "MIT"
+authors = ["mxm"]
+repository = "https://github.com/mxm-audio/mxm-macro-osc"
+readme = "README.md"
 
 [dependencies]
-bytemuck = { workspace = true, features = ["derive"] }
+# Pinned exactly, as in every MXM repository; Cargo.lock is committed.
+bytemuck = { version = "=1.25.2", default-features = false, features = ["derive"] }
 
 [dev-dependencies]
 # The reference cases' digests are SHA-256 of the rendered frames.
-sha2.workspace = true
+sha2 = "=0.10.9"
+
+# The cases are tested bit for bit, so their tests run optimised: a debug build of the same
+# arithmetic gives the same bits (no fast-math anywhere), only slower.
+[profile.dev.package.mxm-macro-osc]
+opt-level = 3

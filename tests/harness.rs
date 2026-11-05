@@ -4,19 +4,19 @@
 //!
 //! Debug aids, by environment variable:
 //!
-//! - `MXM_THANKS_EG_RAW_DIR=<dir>`: write each rendered case's frames to `<dir>/<case>.raw`, the
+//! - `MXM_MACRO_OSC_RAW_DIR=<dir>`: write each rendered case's frames to `<dir>/<case>.raw`, the
 //!   format of the C++ harness's renders (interleaved OUT, AUX, little-endian `int16`).
-//! - `MXM_THANKS_EG_REFERENCE_DIR=<dir>`: the C++ harness's renders, `<dir>/<case>.raw`; on a
+//! - `MXM_MACRO_OSC_REFERENCE_DIR=<dir>`: the C++ harness's renders, `<dir>/<case>.raw`; on a
 //!   mismatch the first differing block and frame are printed from it.
-//! - `MXM_THANKS_EG_CASE=<name>`: render only that case (`e08-ping`), whether ported or not.
+//! - `MXM_MACRO_OSC_CASE=<name>`: render only that case (`e08-ping`), whether ported or not.
 
 use std::collections::BTreeMap;
 use std::fmt::Write as _;
 use std::path::{Path, PathBuf};
 
-use mxm_thanks_eg_engines::dsp::K_BLOCK_SIZE;
-use mxm_thanks_eg_engines::stmlib::dsp::dsp::cast_i32;
-use mxm_thanks_eg_engines::{Frame, Modulations, Patch, Voice};
+use mxm_macro_osc::dsp::K_BLOCK_SIZE;
+use mxm_macro_osc::stmlib::dsp::dsp::cast_i32;
+use mxm_macro_osc::{Frame, Modulations, Patch, Voice};
 use sha2::{Digest, Sha256};
 
 /// The engines ported so far: a case `eNN-*` runs when `NN` is here, and a shared case when
@@ -330,8 +330,8 @@ fn hex(bytes: &[u8]) -> String {
 
 /// Where our frames first differ from the C++'s, block and frame, when its render is at hand.
 fn first_difference(case: &str, ours: &[u8]) -> String {
-    let Some(dir) = std::env::var_os("MXM_THANKS_EG_REFERENCE_DIR") else {
-        return "set MXM_THANKS_EG_REFERENCE_DIR to the C++ renders to see the first differing frame"
+    let Some(dir) = std::env::var_os("MXM_MACRO_OSC_REFERENCE_DIR") else {
+        return "set MXM_MACRO_OSC_REFERENCE_DIR to the C++ renders to see the first differing frame"
             .to_string();
     };
     let path = Path::new(&dir).join(format!("{case}.raw"));
@@ -364,8 +364,8 @@ fn first_difference(case: &str, ours: &[u8]) -> String {
 #[test]
 fn reference_cases() {
     let digests = digests();
-    let only = std::env::var("MXM_THANKS_EG_CASE").ok();
-    let raw_dir = std::env::var_os("MXM_THANKS_EG_RAW_DIR").map(PathBuf::from);
+    let only = std::env::var("MXM_MACRO_OSC_CASE").ok();
+    let raw_dir = std::env::var_os("MXM_MACRO_OSC_RAW_DIR").map(PathBuf::from);
     let mut names: Vec<String> = std::fs::read_dir(cases_dir())
         .expect("tests/cases")
         .filter_map(|entry| {
@@ -388,7 +388,7 @@ fn reference_cases() {
         let text = std::fs::read_to_string(cases_dir().join(format!("{name}.case"))).expect("case");
         let frames = render(&parse_case(name, &text));
         if let Some(dir) = &raw_dir {
-            std::fs::create_dir_all(dir).expect("MXM_THANKS_EG_RAW_DIR");
+            std::fs::create_dir_all(dir).expect("MXM_MACRO_OSC_RAW_DIR");
             std::fs::write(dir.join(format!("{name}.raw")), &frames).expect("write raw");
         }
         let digest = hex(&Sha256::digest(&frames));

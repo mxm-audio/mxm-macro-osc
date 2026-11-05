@@ -8,7 +8,27 @@
 //! itself (`std::max`, `std::min`, an array read).
 //!
 //! The interface is the voice's: [`Patch`], [`Modulations`], [`Frame`], [`Voice::new`] and
-//! [`Voice::render`], once per block of [`dsp::K_BLOCK_SIZE`] frames.
+//! [`Voice::render`], once per block of [`dsp::K_BLOCK_SIZE`] frames. The README's example:
+//!
+//! ```
+//! use mxm_macro_osc::dsp::K_BLOCK_SIZE;
+//! use mxm_macro_osc::{Frame, Modulations, Patch, Voice};
+//!
+//! let mut voice = Voice::new(); // its 16 KB engine memory, allocated once
+//! let patch = Patch {
+//!     engine: 8, // 0 to 23, as the module numbers them
+//!     note: 48.0,
+//!     harmonics: 0.5,
+//!     timbre: 0.5,
+//!     morph: 0.5,
+//!     decay: 0.5,
+//!     lpg_colour: 0.5,
+//!     ..Patch::default()
+//! };
+//! let modulations = Modulations::default(); // nothing patched: the voice drones
+//! let mut frames = [Frame::default(); K_BLOCK_SIZE];
+//! voice.render(&patch, &modulations, &mut frames); // 12 frames of OUT and AUX at 48 kHz
+//! ```
 
 #![forbid(unsafe_code)]
 // Lints whose advice would have the port read unlike the C++ it is held to.
