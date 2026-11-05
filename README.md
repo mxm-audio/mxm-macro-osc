@@ -77,7 +77,8 @@ Call `render` once per block of 12 frames, as the module does. At other rates, r
 - **One dependency:** `bytemuck`, for the typed views of the voice's engine memory.
 - **Polyphony** is many voices. Each is self-contained, and `clear` returns one to its first
   state without allocating.
-- Builds for `wasm32-unknown-unknown`.
+- Builds for WebAssembly (`wasm32-unknown-unknown`), so it can run in a web browser.
+  WebAssembly has no flush-to-zero, so the last-bit caveat above applies there.
 
 ## The engines
 
